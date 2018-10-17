@@ -4,16 +4,18 @@ public class NewsReport {
     private String mArticleType;
     private String mSectionName;
     private String mArticleName;
-    private long mPublishTimeInMillisec;
+    private String mPublishTimeInMillisec;
     private String mUrl;
+    private String mAuthorName;
 
-    public NewsReport(String articleType, String sectionName, String articleName, long timeMillisec, String url) {
+    public NewsReport(String articleType, String sectionName, String articleName, String timeMillisec, String url, String author ) {
 
         mArticleType = articleType;
         mSectionName = sectionName;
         mArticleName = articleName;
         mPublishTimeInMillisec = timeMillisec;
         mUrl = url;
+        mAuthorName = author;
     }
 
 
@@ -29,11 +31,15 @@ public class NewsReport {
         return mArticleName;
     }
 
-    public long getmPublishTimeInMillisec() {
+    public String getmPublishTimeInMillisec() {
         return mPublishTimeInMillisec;
     }
 
     public String getmUrl() {
         return mUrl;
+    }
+
+    public String getmAuthorName() {
+        return mAuthorName;
     }
 }

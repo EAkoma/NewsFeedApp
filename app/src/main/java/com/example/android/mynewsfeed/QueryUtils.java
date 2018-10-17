@@ -107,21 +107,28 @@ public class QueryUtils {
         try {
             JSONObject baseJsonResponse = new JSONObject(newsreportJSON);
 
-            JSONArray newsreportArray = baseJsonResponse.getJSONArray("results");
+            JSONArray newsreportArray = baseJsonResponse.getJSONObject("response").getJSONArray("results");
 
             for (int i = 0; i < newsreportArray.length(); i++) {
 
                 JSONObject currentNewsreport = newsreportArray.getJSONObject(i);
 
-                JSONObject results = currentNewsreport.getJSONObject("results");
-
-                String articleType = results.getString("type");
+                String articleType = currentNewsreport.getString("sectionId");
                 String sectionName = currentNewsreport.getString("sectionName");
                 String articleName = currentNewsreport.getString("webTitle");
-                long articleTime = currentNewsreport.getLong("webPublicationDate");
-                String articleUrl = currentNewsreport.getString("apiUrl");
+                String articleTime = currentNewsreport.getString("webPublicationDate");
+                String articleUrl = currentNewsreport.getString("webUrl");
 
-                NewsReport newsreport = new NewsReport(articleType, sectionName, articleName, articleTime, articleUrl);
+                JSONArray tags = baseJsonResponse.getJSONArray("tags");
+                JSONArray tagsArray = currentNewsreport.getJSONArray("tags");
+                String authorName = null;
+
+                if (tagsArray.length() == 1) {
+                    JSONObject contributorTag = (JSONObject) tagsArray.get(0);
+                    authorName = contributorTag.getString("webTitle");
+                }
+
+                NewsReport newsreport = new NewsReport(articleType, sectionName, articleName, articleTime, articleUrl,authorName);
                 newsreports.add(newsreport);
             }
 

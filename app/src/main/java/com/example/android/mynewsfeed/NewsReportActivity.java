@@ -20,7 +20,7 @@ import java.util.List;
 public class NewsReportActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<NewsReport>> {
 
-    private static final String THE_GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?order-by=newest&page-size=15&api-key=700cb6e3-adb2-4790-aa8a-ef54d760a8f8";
+    private static final String THE_GUARDIAN_REQUEST_URL = "https://content.guardianapis.com/search?order-by=newest&page-size=15&show-tags=contributor&api-key=700cb6e3-adb2-4790-aa8a-ef54d760a8f8";
     private static final int NEWSREPORT_LOADER_ID = 1;
     private NewsReportAdapter mAdapter;
 
